@@ -1,0 +1,100 @@
+body {
+    font-family: poppins-light, sans-serif;
+    background-image: url('fondo2.png');
+    background-size: cover;
+    background-repeat: no-repeat;    
+    padding: 0;
+    color: rgb(4, 8, 59);
+    font-weight: bold;
+    max-width: 600px;
+    margin: auto;
+}
+
+.poppins-light {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+#login-container, #app-container {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 40px;
+    background-color: #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #ccc(0, 0, 0, 0.1);
+}
+
+#remember-me {
+    text-align: justify;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #221f1f;
+}
+
+input, select {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Alinear checkbox y etiqueta en la misma línea */
+#login-form div {
+    align-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    display: inline-flex;
+    margin: auto;
+}
+
+button {
+    max-width: 600px;
+    padding: 10px;
+    background-color: #28a745;
+    color: #f7f3f3;
+    border: 20%;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #218838;
+    max-width: 600px;
+}
+
+#tabla-gastos {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+#tabla-gastos th, #tabla-gastos td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+    width: 50%;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: #746c6c;    
+}
+
+#register-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #ccc(0, 0, 0, 0.1);    
+}
+
+

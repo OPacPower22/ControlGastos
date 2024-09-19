@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Gastos Mensuales</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="login-container">
+        <h2>Iniciar sesión</h2>
+        <form id="login-form">
+            <label for="username">Usuario:</label>
+            <input type="text" id="username" required>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" required>
+            <div>
+                <input type="checkbox" id="remember-me">
+                <label for="remember-me">Recordar contraseña</label>
+            </div>
+            <br>
+            <button type="submit">Ingresar</button>
+            <p id="login-error" class="hidden">Usuario o contraseña incorrectos</p>
+        </form>
+        <p>¿No tienes cuenta? <a href="#" id="register-link">Regístrate aquí</a></p>
+    </div>
+
+    <div id="register-container" class="hidden">
+        <h2>Registro de usuario</h2>
+        <form id="register-form">
+            <label for="new-username">Nuevo Usuario:</label>
+            <input type="text" id="new-username" required>
+            <label for="new-password">Nueva Contraseña:</label>
+            <input type="password" id="new-password" required>            
+            <button type="submit">Registrar</button>
+            <p id="register-error" class="hidden">El usuario ya existe</p>
+        </form>
+        <p>¿Ya tienes cuenta? <a href="#" id="login-link">Inicia sesión aquí</a></p>
+    </div>
+
+    <div id="app-container" class="hidden">
+        <h1>Control de Gastos Mensuales</h1>
+        <form id="gasto-form">
+            <label for="fecha">Fecha:</label>
+            <input type="date" id="fecha" required>
+            <label for="categoria">Categoría:</label>
+            <input type="text" id="categoria" required>
+            <label for="monto">Monto ($):</label>
+            <input type="number" id="monto" step="0.01" required>
+            <button type="submit">Agregar Gasto</button>
+        </form>
+
+        <h2>Gastos Registrados</h2>
+        <table id="tabla-gastos">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Categoría</th>
+                    <th>Monto</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <h2>Generar Reporte</h2>
+        <label for="tipo-reporte">Tipo de Reporte:</label>
+        <select id="tipo-reporte">
+            <option value="diario">Diario</option>
+            <option value="mensual">Mensual</option>
+            <option value="anual">Anual</option>
+        </select>
+        <button id="btn-reporte">Generar Reporte</button>
+        <button id="btn-imprimir">Imprimir Reporte</button>
+
+        <!-- Botón para cerrar sesión -->
+        <br>
+        <br>
+        <button id="btn-cerrar-sesion">Cerrar sesión</button>
+
+        <div id="reporte"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
