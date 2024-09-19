@@ -3,10 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control de Gastos Mensuales</title>
+    <title>Control de Ingresos y Gastos Mensuales</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Rose:wght@300..700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="banner">
+        <h1>Control de<br>Gastos</h1>
+    </div>
     <div id="login-container">
         <h2>Iniciar sesión</h2>
         <form id="login-form">
@@ -18,10 +28,10 @@
                 <input type="checkbox" id="remember-me">
                 <label for="remember-me">Recordar contraseña</label>
             </div>
-            <br>
             <button type="submit">Ingresar</button>
             <p id="login-error" class="hidden">Usuario o contraseña incorrectos</p>
         </form>
+
         <p>¿No tienes cuenta? <a href="#" id="register-link">Regístrate aquí</a></p>
     </div>
 
@@ -31,7 +41,7 @@
             <label for="new-username">Nuevo Usuario:</label>
             <input type="text" id="new-username" required>
             <label for="new-password">Nueva Contraseña:</label>
-            <input type="password" id="new-password" required>            
+            <input type="password" id="new-password" required>
             <button type="submit">Registrar</button>
             <p id="register-error" class="hidden">El usuario ya existe</p>
         </form>
@@ -39,47 +49,66 @@
     </div>
 
     <div id="app-container" class="hidden">
-        <h1>Control de Gastos Mensuales</h1>
+        <h1>Control de Ingresos y Gastos Mensuales</h1>
+
+        <!-- Saldo Inicial -->
+        <h2>Saldo Inicial</h2>
+        <form id="saldo-inicial-form">
+            <label for="saldo-inicial">Ingresa tu saldo inicial ($):</label>
+            <input type="number" id="saldo-inicial" step="0.01" required>
+            <button type="submit">Guardar Saldo Inicial</button>
+        </form>
+
+        <!-- Formulario para agregar ingresos -->
+        <h2>Agregar Ingreso</h2>
+        <form id="ingreso-form">
+            <label for="fecha-ingreso">Fecha:</label>
+            <input type="date" id="fecha-ingreso" required>
+            <label for="categoria-ingreso">Descripción:</label>
+            <input type="text" id="categoria-ingreso" required>
+            <label for="monto-ingreso">Monto ($):</label>
+            <input type="number" id="monto-ingreso" step="0.01" required>
+            <button type="submit">Agregar Ingreso</button>
+        </form>
+
+        <!-- Formulario para agregar gastos -->
+        <h2>Agregar Gasto</h2>
         <form id="gasto-form">
             <label for="fecha">Fecha:</label>
             <input type="date" id="fecha" required>
-            <label for="categoria">Categoría:</label>
+            <label for="categoria">Descripción:</label>
             <input type="text" id="categoria" required>
             <label for="monto">Monto ($):</label>
             <input type="number" id="monto" step="0.01" required>
             <button type="submit">Agregar Gasto</button>
         </form>
 
-        <h2>Gastos Registrados</h2>
-        <table id="tabla-gastos">
+        <!-- Tabla de ingresos y gastos -->
+        <h2>Ingresos y Gastos</h2>
+        <table id="tabla-ingresos-gastos">
             <thead>
                 <tr>
                     <th>Fecha</th>
                     <th>Categoría</th>
+                    <th>Tipo</th>
                     <th>Monto</th>
-                    <th>Editar</th>
                     <th>Eliminar</th>
+                    <th>Modificar</th>
                 </tr>
             </thead>
             <tbody></tbody>
         </table>
 
-        <h2>Generar Reporte</h2>
-        <label for="tipo-reporte">Tipo de Reporte:</label>
-        <select id="tipo-reporte">
-            <option value="diario">Diario</option>
-            <option value="mensual">Mensual</option>
-            <option value="anual">Anual</option>
-        </select>
-        <button id="btn-reporte">Generar Reporte</button>
-        <button id="btn-imprimir">Imprimir Reporte</button>
+        <!-- Mostrar Saldo Remanente -->
+        <h2>Saldo Remanente</h2>
+        <p id="saldo-remanente">Saldo actual: $0.00</p>
+
+        <!-- Gráfica de Ingresos vs Gastos -->
+        <h2>Gráfica de Ingresos vs Gastos</h2>
+        <canvas id="grafica-ingresos-gastos"></canvas>
 
         <!-- Botón para cerrar sesión -->
-        <br>
-        <br>
         <button id="btn-cerrar-sesion">Cerrar sesión</button>
-
-        <div id="reporte"></div>
     </div>
 
     <script src="script.js"></script>

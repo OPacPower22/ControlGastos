@@ -6,9 +6,31 @@ body {
     padding: 0;
     color: rgb(4, 8, 59);
     font-weight: bold;
-    max-width: 600px;
+    max-width: 650px;
     margin: auto;
 }
+
+.banner {
+    background-color: #01053083;
+    text-align: center; /* Centrar el texto */
+    font-family: 'Red Rose', sans-serif; /* Fuente de texto */
+    margin-top: 30px;
+}
+
+.banner h1 {    
+    color: white;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: rgba(31, 8, 240, 0.712);
+    font-size: 4.3em; /* Tamaño del texto */
+    line-height: 1.2; /* Espaciado entre las líneas */
+    margin: 0; /* Eliminar márgenes */
+}
+
+.poppins-medium {
+    font-family: "Poppins", system-ui;
+    font-weight: 500;
+    font-style: normal;
+  }
 
 .poppins-light {
     font-family: "Poppins", sans-serif;
@@ -17,8 +39,8 @@ body {
 }
 
 #login-container, #app-container {
-    max-width: 600px;
-    margin: 60px auto;
+    max-width: 800px;
+    margin: 120px auto;
     padding: 40px;
     background-color: #ccc;
     border-radius: 8px;
@@ -35,7 +57,7 @@ h1, h2 {
 }
 
 input, select {
-    width: 95%;
+    width: 90%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -44,6 +66,7 @@ input, select {
 
 /* Alinear checkbox y etiqueta en la misma línea */
 #login-form div {
+    border: hsl(235, 96%, 10%);
     align-content: space-evenly;
     align-items: center;
     text-align: center;
@@ -74,7 +97,7 @@ button:hover {
 }
 
 #tabla-gastos th, #tabla-gastos td {
-    padding: 10px;
+    padding: auto;
     border: 1px solid #ddd;
     text-align: center;
 }
@@ -89,12 +112,29 @@ button:hover {
 }
 
 #register-container {
-    max-width: 600px;
+    max-width: 800px;
     margin: 20px auto;
     padding: 20px;
     background-color: #ccc;
     border-radius: 8px;
     box-shadow: 0 0 10px #ccc(0, 0, 0, 0.1);    
+}
+
+/* Tabla de ingresos y gastos */
+#tabla-ingresos-gastos {
+    width: 10%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+#tabla-ingresos-gastos th, #tabla-ingresos-gastos td {
+    padding: 10px;
+    border: 3px solid #4553d38e;
+    text-align: center;    
+}
+
+canvas {
+    margin: 20px 0;
 }
 
 
