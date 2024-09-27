@@ -5,18 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control de Ingresos y Gastos Mensuales</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Red+Rose:wght@300..700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Librería Chart.js -->
 </head>
 <body>
-    <div class="banner">
-        <h1>Control de<br>Gastos</h1>
-    </div>
     <div id="login-container">
         <h2>Iniciar sesión</h2>
         <form id="login-form">
@@ -36,10 +27,11 @@
     </div>
 
     <div id="register-container" class="hidden">
-        <h2>Registro de usuario</h2>
-        <form id="register-form">
-            <label for="new-username">Nuevo Usuario:</label>
+    <h2>Registro de Usuario</h2>
+    <form id="register-form">
+        <label for="new-username">Nuevo Usuario:</label>
             <input type="text" id="new-username" required>
+            <br>
             <label for="new-password">Nueva Contraseña:</label>
             <input type="password" id="new-password" required>
             <button type="submit">Registrar</button>
@@ -48,27 +40,36 @@
         <p>¿Ya tienes cuenta? <a href="#" id="login-link">Inicia sesión aquí</a></p>
     </div>
 
+            <p id="register-error" class="hidden">El usuario ya existe</p>
+        </form>   
+
     <div id="app-container" class="hidden">
         <h1>Control de Ingresos y Gastos Mensuales</h1>
 
         <!-- Saldo Inicial -->
         <h2>Saldo Inicial</h2>
         <form id="saldo-inicial-form">
-            <label for="saldo-inicial">Ingresa tu saldo inicial ($):</label>
+            <label for="saldo-inicial">Saldo inicial al principio del periodo ($):</label>
             <input type="number" id="saldo-inicial" step="0.01" required>
             <button type="submit">Guardar Saldo Inicial</button>
+            <button type="button" id="btn-limpiar-saldo">Limpiar</button> <!-- Botón para limpiar saldo inicial -->
         </form>
+
+        <!-- Mostrar Saldo Remanente -->
+        <h2>Saldo Remanente</h2>
+        <p id="saldo-remanente">Saldo actual: $0.00</p>
 
         <!-- Formulario para agregar ingresos -->
         <h2>Agregar Ingreso</h2>
         <form id="ingreso-form">
             <label for="fecha-ingreso">Fecha:</label>
             <input type="date" id="fecha-ingreso" required>
-            <label for="categoria-ingreso">Descripción:</label>
+            <label for="categoria-ingreso">Categoría:</label>
             <input type="text" id="categoria-ingreso" required>
             <label for="monto-ingreso">Monto ($):</label>
             <input type="number" id="monto-ingreso" step="0.01" required>
             <button type="submit">Agregar Ingreso</button>
+            <button type="button" id="btn-limpiar-ingreso">Limpiar</button> <!-- Botón para limpiar ingreso -->
         </form>
 
         <!-- Formulario para agregar gastos -->
@@ -76,11 +77,12 @@
         <form id="gasto-form">
             <label for="fecha">Fecha:</label>
             <input type="date" id="fecha" required>
-            <label for="categoria">Descripción:</label>
+            <label for="categoria">Categoría:</label>
             <input type="text" id="categoria" required>
             <label for="monto">Monto ($):</label>
             <input type="number" id="monto" step="0.01" required>
             <button type="submit">Agregar Gasto</button>
+            <button type="button" id="btn-limpiar-gasto">Limpiar</button> <!-- Botón para limpiar gasto -->
         </form>
 
         <!-- Tabla de ingresos y gastos -->
@@ -92,16 +94,13 @@
                     <th>Categoría</th>
                     <th>Tipo</th>
                     <th>Monto</th>
-                    <th>Eliminar</th>
+                    <th>Saldo Actualizado</th> <!-- Nueva columna -->
                     <th>Modificar</th>
+                    <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody></tbody>
         </table>
-
-        <!-- Mostrar Saldo Remanente -->
-        <h2>Saldo Remanente</h2>
-        <p id="saldo-remanente">Saldo actual: $0.00</p>
 
         <!-- Gráfica de Ingresos vs Gastos -->
         <h2>Gráfica de Ingresos vs Gastos</h2>
@@ -109,8 +108,49 @@
 
         <!-- Botón para cerrar sesión -->
         <button id="btn-cerrar-sesion">Cerrar sesión</button>
+
+        <!-- Ventana modal para editar un ingreso o gasto -->
+        <div id="modal-editar" class="modal hidden">
+            <div class="modal-content">
+                <h2>Modificar Registro</h2>
+                <form id="form-editar">
+                    <label for="fecha-editar">Fecha:</label>
+                    <input type="date" id="fecha-editar" required>
+                    
+                    <label for="categoria-editar">Categoría:</label>
+                    <input type="text" id="categoria-editar" required>
+                    
+                    <label for="monto-editar">Monto ($):</label>
+                    <input type="number" id="monto-editar" step="0.01" required>
+                    
+                    <div>
+                        <button type="submit" id="btn-aceptar-editar">Aceptar</button>
+                        <button type="button" id="btn-cancelar-editar">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // Funciones para limpiar los campos
+        document.getElementById('btn-limpiar-saldo').addEventListener('click', function() {
+            document.getElementById('saldo-inicial').value = '';
+        });
+
+        document.getElementById('btn-limpiar-ingreso').addEventListener('click', function() {
+            document.getElementById('fecha-ingreso').value = '';
+            document.getElementById('categoria-ingreso').value = '';
+            document.getElementById('monto-ingreso').value = '';
+        });
+
+        document.getElementById('btn-limpiar-gasto').addEventListener('click', function() {
+            document.getElementById('fecha').value = '';
+            document.getElementById('categoria').value = '';
+            document.getElementById('monto').value = '';
+        });
+    </script>
 </body>
 </html>
+
